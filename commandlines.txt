@@ -1,0 +1,7 @@
+rustc .\hello.r ----------> compile file
+cargo new <path> --bin ----------> create new binary cargo project
+cargo init ---------------> init cargo project
+cargo run ----------------> compile and run cargo project
+cargo build --------------> compile cargo project
+cargo build --release ----> compile release cargo project
+cargo doc --open ---------> open doc about dependencies
