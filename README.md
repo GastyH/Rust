@@ -1,0 +1,2 @@
+# Rust
+Random rust projects
