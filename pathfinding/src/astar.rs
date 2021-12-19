@@ -168,21 +168,19 @@ impl SearchAlgo for AStar<'_> {
         }
     
         let mut is_solved = false;
-        if node_info.distance + 1 < self.node_infos[self.finish].distance {
-            let node: &Node = &self.maze[node_index];
-            node.neighbours.iter().for_each( |d| {
-                    let neightbour_index = get_array_val_from_pos_and_dir(node.x, node.y, *d);
-                    let neightbour_node_info = &mut self.node_infos[neightbour_index];
-                    if node_info.distance + 1 < neightbour_node_info.distance {
-                        neightbour_node_info.distance = node_info.distance + 1;
-                        neightbour_node_info.antecedant = node_index;
-                    }
-                    if neightbour_index == self.finish {
-                        is_solved = true;
-                    }
+        let node: &Node = &self.maze[node_index];
+        node.neighbours.iter().for_each( |d| {
+                let neightbour_index = get_array_val_from_pos_and_dir(node.x, node.y, *d);
+                let neightbour_node_info = &mut self.node_infos[neightbour_index];
+                if node_info.distance + 1 < neightbour_node_info.distance {
+                    neightbour_node_info.distance = node_info.distance + 1;
+                    neightbour_node_info.antecedant = node_index;
                 }
-            );
-        }
+                if neightbour_index == self.finish {
+                    is_solved = true;
+                }
+            }
+        );
 
         if is_solved {
             return Some(true);
